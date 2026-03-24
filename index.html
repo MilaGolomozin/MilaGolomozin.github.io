@@ -1,19 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Data Viz Site</title>
+    <title>SF Crime Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #eaeaea;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #16213e, #1a1a2e);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+            color: #16c79a;
+        }
+
+        header p {
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 18px;
+            color: #cfcfe0;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #16c79a;
+        }
+
+        .card {
+            background-color: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            background-color: #16c79a;
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        a.button:hover {
+            opacity: 0.85;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
-    
-    <p>This site will soon contain interactive data visualizations about crime in San Francisco.</p>
-    
-    <a href="crime_hourly_interactive.html">Explore hourly crime patterns →</a><br><br>
-    <a href="sf_crime_heatmap.html">View Heatmap</a>
-    
-    <h2>Crime Correlations</h2>
-    <img src="images/week4_crime_correlations.png" 
-         alt="Yearly crime trends" 
-         style="max-width: 100%;">
+
+<header>
+    <h1>SF Crime: Two Decades of Data</h1>
+    <p>
+        This project explores long-term patterns in crime across San Francisco, uncovering how different offenses evolve over time and space. 
+        Through interactive visualizations, you can explore when crimes happen, how they relate, and where they concentrate across the city.
+    </p>
+</header>
+
+<section>
+
+    <div class="card">
+        <h2>📊 Crime Correlations</h2>
+        <p>
+            This visualization compares pairs of crime types to reveal relationships between them. 
+            Each point represents an hour in the week, helping identify whether certain crimes tend to increase or decrease together.
+        </p>
+        <img src="images/week4_crime_correlations.png" alt="Crime correlation plots">
+    </div>
+
+    <div class="card">
+        <h2>⏰ Hourly Crime Patterns</h2>
+        <p>
+            Explore how crime fluctuates throughout the week. This interactive visualization allows you to identify peak hours 
+            and understand how different crime categories behave across time.
+        </p>
+        <a class="button" href="crime_hourly_interactive.html">
+            Explore hourly patterns →
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>🗺️ Crime Heatmap</h2>
+        <p>
+            This map highlights geographic concentrations of crime across San Francisco. 
+            Brighter areas indicate higher activity, helping you quickly spot hotspots and spatial trends.
+        </p>
+
+        <!-- Embedded version -->
+        <iframe src="sf_crime_heatmap.html"></iframe>
+
+        <!-- Backup link -->
+        <p>
+            If the map doesn’t load, <a href="sf_crime_heatmap.html" style="color:#16c79a;">click here to open it</a>.
+        </p>
+    </div>
+
+</section>
+
+<footer>
+    <p>Data Science Portfolio • San Francisco Crime Analysis</p>
+</footer>
+
 </body>
 </html>

@@ -151,6 +151,61 @@
         display: block;
     }
 
+    /* ── Policy timeline ── */
+    .policy-timeline {
+        max-width: 700px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #ddd;
+    }
+
+    .policy-timeline h3 {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #999;
+        margin: 0 0 20px;
+    }
+
+    .policy-entry {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 0 16px;
+        margin-bottom: 18px;
+        align-items: start;
+    }
+
+    .policy-year {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #b23a2e;
+        padding-top: 2px;
+        text-align: right;
+    }
+
+    .policy-body {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 15px;
+        color: #333;
+        line-height: 1.55;
+        border-left: 2px solid #e8e0d5;
+        padding-left: 14px;
+    }
+
+    .policy-body a {
+        color: #b23a2e;
+        text-decoration: none;
+        border-bottom: 1px solid #e8a099;
+        transition: border-color 0.15s;
+    }
+
+    .policy-body a:hover {
+        border-color: #b23a2e;
+    }
+
     /* ── Highlights ── */
     .highlight {
         color: #b23a2e;
@@ -265,6 +320,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="policy-timeline">
+            <h3>Key policy moments</h3>
+
+            <div class="policy-entry">
+                <div class="policy-year">2010</div>
+                <div class="policy-body">
+                    The <a href="https://www.congress.gov/bill/111th-congress/senate-bill/1789" target="_blank">Fair Sentencing Act</a> under Obama raised the minimum drug quantities required for a federal felony — likely reducing arrests for small-scale possession and contributing to the sharp 2009–2011 drop.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2021</div>
+                <div class="policy-body">
+                    Governor Newsom launched a <a href="https://www.gov.ca.gov/2026/03/31/governor-newsoms-border-strategy-intercepts-54-million-lethal-fentanyl-pills-since-2021/" target="_blank">$30M fentanyl crackdown</a> with a zero-tolerance approach to possession — driving the spike in recorded drug crime after years of relative calm.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2025</div>
+                <div class="policy-body">
+                    SF Mayor Lurie <a href="https://www.sf.gov/news-mayor-lurie-ends-distribution-of-fentanyl-smoking-supplies-without-counseling-and-treatment" target="_blank">ended distribution of fentanyl smoking supplies</a> without mandatory counseling — potentially pushing users toward illegal dealers and contributing to another uptick in drug-related incidents.
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- ── SECTION 2 ── -->
@@ -303,6 +384,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="policy-timeline">
+            <h3>What the map shows</h3>
+
+            <div class="policy-entry">
+                <div class="policy-year">2003</div>
+                <div class="policy-body">
+                    Drug crime was relatively spread across the city. Tenderloin (27%), Southern (21%), and Mission (21%) together accounted for <strong>69%</strong> of all drug-related incidents — high, but distributed.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2025</div>
+                <div class="policy-body">
+                    The same three districts now account for <strong>83%</strong> — with Tenderloin alone jumping to 37%. What was once spread across the city has consolidated into a handful of neighbourhoods.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">Next</div>
+                <div class="policy-body">
+                    Is this concentration unique to drug crime, or are other crime types shifting too? We compare drug incidents against several high-frequency crime categories below.
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- ── SECTION 3 ── -->

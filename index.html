@@ -7,90 +7,85 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #eaeaea;
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            font-family: Georgia, "Times New Roman", serif;
+            background-color: #f7f3ea;
+            color: #222;
+            line-height: 1.7;
         }
 
         header {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 60px 20px;
+            padding: 80px 20px 40px;
             text-align: center;
         }
 
         header h1 {
+            font-size: 42px;
             margin: 0;
-            font-size: 38px;
-            color: #16c79a;
         }
 
         header p {
             max-width: 700px;
-            margin: 20px auto 0;
+            margin: 20px auto;
             font-size: 18px;
-            color: #cfcfe0;
+            color: #555;
         }
 
-        section {
-            max-width: 850px;
-            margin: 40px auto;
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            max-width: 1100px;
+            margin: auto;
             padding: 0 20px;
         }
 
+        .main {
+            max-width: 700px;
+        }
+
+        .side {
+            font-size: 15px;
+            color: #8a3b2e;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
         h2 {
-            color: #16c79a;
+            margin-top: 60px;
+            font-size: 26px;
         }
 
-        .card {
-            background-color: #16213e;
-            padding: 22px;
-            border-radius: 10px;
-            margin-bottom: 35px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-
-            /* animation */
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 👇 FIX: wider section ONLY for big plot */
-        .wide {
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+        p {
+            margin: 15px 0;
         }
 
         img, iframe {
             width: 100%;
-            border-radius: 10px;
-            margin-top: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
         }
 
         iframe {
-            height: 620px; /* 👈 increased */
+            height: 600px;
             border: none;
         }
 
-    
-
-        /* highlight text */
         .highlight {
-            color: #16c79a;
+            color: #b23a2e;
             font-weight: bold;
+        }
+
+        .question {
+            border-left: 3px solid #b23a2e;
+            padding-left: 12px;
+            margin-bottom: 30px;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            color: #888;
+            margin: 60px 0;
+            color: #777;
         }
     </style>
 </head>
@@ -105,90 +100,65 @@
     </p>
 </header>
 
-<section>
+<div class="container">
 
-    <!-- SECTION 1 -->
-    <div class="card">
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
         <h2>1. Changes Over Time</h2>
 
         <p>
-            We begin by looking at how drug-related crimes have changed over the past two decades.
+            We begin by examining how drug-related crimes have evolved over the past two decades.
         </p>
 
         <img src="images/drug_narcotic_crimes.png">
 
         <p>
             There is a <span class="highlight">sharp drop between 2009–2011</span>, followed by a 
-            <span class="highlight">rise after 2021</span> and a spike around 2025.
+            <span class="highlight">rise after 2021</span> and another spike around 2025.
         </p>
 
         <p>
-            While we cannot claim causation, the timing suggests that policy may play a role in shaping these trends.
+            While we cannot claim causation, these shifts align with major policy periods and suggest possible influence.
         </p>
-    </div>
 
 
-    <!-- TRANSITION -->
-    <div class="card">
-        <p>
-            But overall trends don’t tell us where crime happens. 
-            To understand that, we need to look at geography.
-        </p>
-    </div>
-
-
-    <!-- SECTION 2 -->
-    <div class="card">
         <h2>2. A Shift in Where Crime Happens</h2>
 
         <p>
-            The map below shows how the spatial distribution of drug-related crime has changed over time.
+            Total crime counts alone do not tell the full story. We now turn to geography.
         </p>
 
         <iframe src="drug_narcotic_heatmap.html"></iframe>
 
         <p>
-            Drug crime becomes increasingly concentrated in 
+            Over time, drug crime becomes increasingly concentrated in 
             <span class="highlight">Tenderloin, Southern, and Mission</span>.
         </p>
 
         <p>
-            What was once distributed across the city is now localized in key areas.
+            What was once more distributed across the city is now localized.
         </p>
-    </div>
 
 
-    <!-- TRANSITION -->
-    <div class="card">
-        <p>
-            Is this concentration unique to drug crime, or part of a broader trend?
-        </p>
-    </div>
-
-
-    <!-- SECTION 3 (FIXED WIDTH) -->
-    <div class="card wide">
         <h2>3. Comparing with Other Crimes</h2>
 
         <p>
-            We compare drug crime with other high-frequency crimes such as larceny/theft.
+            Is this pattern unique to drug crime, or part of a broader trend?
         </p>
 
         <iframe src="category_district_comparison.html"></iframe>
 
         <p>
-            Other crimes remain relatively stable in their geographic distribution over time.
+            Other crimes remain relatively stable in their geographic distribution.
         </p>
 
         <p>
-            This suggests the concentration we observe is 
+            This suggests the concentration is 
             <span class="highlight">specific to drug-related activity</span>.
         </p>
-    </div>
 
 
-    <!-- CONCLUSION -->
-    <div class="card">
         <h2>Conclusion</h2>
 
         <p>
@@ -196,32 +166,38 @@
         </p>
 
         <p>
-            While trends may align with policy shifts, the growing spatial concentration points to deeper underlying dynamics.
+            The increasing spatial concentration points to deeper dynamics beyond overall crime levels.
         </p>
+
     </div>
 
-</section>
+
+    <!-- SIDE ANNOTATIONS -->
+    <div class="side">
+
+        <div class="question">
+            Why did crime drop sharply around 2010?
+        </div>
+
+        <div class="question">
+            Are recent increases linked to enforcement changes?
+        </div>
+
+        <div class="question">
+            Is crime becoming concentrated in specific neighborhoods?
+        </div>
+
+        <div class="question">
+            Do other crimes show the same pattern?
+        </div>
+
+    </div>
+
+</div>
 
 <footer>
     <p>Data Visualization Project • San Francisco Crime Analysis</p>
 </footer>
-
-<!-- 👇 Scroll animation script -->
-<script>
-const cards = document.querySelectorAll('.card');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-});
-
-cards.forEach(card => {
-    observer.observe(card);
-});
-</script>
 
 </body>
 </html>

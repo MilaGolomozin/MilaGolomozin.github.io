@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SF Crime Analysis</title>
+    <title>Drug Crime in San Francisco</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <style>
         body {
             margin: 0;
@@ -21,7 +23,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 40px;
+            font-size: 38px;
             color: #16c79a;
         }
 
@@ -33,7 +35,7 @@
         }
 
         section {
-            max-width: 900px;
+            max-width: 850px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -44,39 +46,21 @@
 
         .card {
             background-color: #16213e;
-            padding: 20px;
+            padding: 22px;
             border-radius: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        a.button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 18px;
-            background-color: #16c79a;
-            color: #1a1a2e;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        a.button:hover {
-            opacity: 0.85;
-        }
-
-        img {
+        img, iframe {
             width: 100%;
             border-radius: 10px;
             margin-top: 15px;
         }
 
         iframe {
-            width: 100%;
             height: 500px;
             border: none;
-            border-radius: 10px;
-            margin-top: 15px;
         }
 
         footer {
@@ -90,55 +74,116 @@
 <body>
 
 <header>
-    <h1>SF Crime: Two Decades of Data</h1>
+    <h1>Drug Crime in San Francisco</h1>
     <p>
-        This project explores long-term patterns in crime across San Francisco, uncovering how different offenses evolve over time and space. 
-        Through interactive visualizations, you can explore when crimes happen, how they relate, and where they concentrate across the city.
+        Drug-related crime has been a central issue in California politics. 
+        But how much of what we see in the data reflects policy — and how much reflects deeper structural change?
     </p>
 </header>
 
 <section>
 
+    <!-- SECTION 1 -->
     <div class="card">
-        <h2>📊 Crime Correlations</h2>
+        <h2>1. Changes Over Time</h2>
+
         <p>
-            This visualization compares pairs of crime types to reveal relationships between them. 
-            Each point represents an hour in the week, helping identify whether certain crimes tend to increase or decrease together.
+            We begin by looking at how drug-related crimes have changed over the past two decades. 
+            This gives us a baseline for understanding whether major shifts align with policy changes.
         </p>
-        <img src="images/week4_crime_correlations.png" alt="Crime correlation plots">
+
+        <img src="images/drug_narcotic_crimes.png" alt="Drug crime over time">
+
+        <p>
+            There is a noticeable drop between 2009 and 2011, followed by a gradual rise after 2021 and a spike around 2025.
+            These shifts coincide with major policy moments, including sentencing reforms and more recent enforcement efforts.
+        </p>
+
+        <p>
+            While we cannot claim direct causation, the timing suggests that policy may play a role in shaping observed crime trends.
+        </p>
     </div>
 
+
+    <!-- TRANSITION -->
     <div class="card">
-        <h2>⏰ Hourly Crime Patterns</h2>
         <p>
-            Explore how crime fluctuates throughout the week. This interactive visualization allows you to identify peak hours 
-            and understand how different crime categories behave across time.
+            But overall trends don’t tell us where crime happens. 
+            To understand that, we need to look at geography.
         </p>
-        <a class="button" href="crime_hourly_interactive.html">
-            Explore hourly patterns →
-        </a>
     </div>
 
+
+    <!-- SECTION 2 -->
     <div class="card">
-        <h2>🗺️ Crime Heatmap</h2>
+        <h2>2. A Shift in Where Crime Happens</h2>
+
         <p>
-            This map highlights geographic concentrations of crime across San Francisco. 
-            Brighter areas indicate higher activity, helping you quickly spot hotspots and spatial trends.
+            The map below shows how the spatial distribution of drug-related crime has changed over time. 
+            Compare earlier years with recent ones to see how patterns evolve.
         </p>
 
-        <!-- Embedded version -->
-        <iframe src="sf_crime_heatmap.html"></iframe>
+        <iframe src="drug_narcotic_heatmap.html"></iframe>
 
-        <!-- Backup link -->
         <p>
-            If the map doesn’t load, <a href="sf_crime_heatmap.html" style="color:#16c79a;">click here to open it</a>.
+            Over time, drug crime becomes more concentrated in specific districts — particularly the Tenderloin, Southern, and Mission areas.
+            What was once more distributed across the city is now increasingly localized.
+        </p>
+
+        <p>
+            By 2025, these areas account for a significantly larger share of total drug-related incidents, suggesting a growing spatial concentration.
+        </p>
+    </div>
+
+
+    <!-- TRANSITION -->
+    <div class="card">
+        <p>
+            Is this concentration unique to drug crime, or part of a broader trend across all crime types?
+        </p>
+    </div>
+
+
+    <!-- SECTION 3 -->
+    <div class="card">
+        <h2>3. Comparing with Other Crimes</h2>
+
+        <p>
+            To answer this, we compare drug crime with other high-frequency crimes such as larceny/theft.
+        </p>
+
+        <iframe src="category_district_comparison.html"></iframe>
+
+        <p>
+            Unlike drug-related offenses, other crimes remain relatively stable in their geographic distribution over time.
+            The same districts dominate both in 2003 and 2025 with only minor changes.
+        </p>
+
+        <p>
+            This suggests that the increasing concentration observed earlier is not a general crime trend — 
+            but something specific to drug-related activity.
+        </p>
+    </div>
+
+
+    <!-- CONCLUSION -->
+    <div class="card">
+        <h2>Conclusion</h2>
+
+        <p>
+            Drug crime in San Francisco has not only changed in scale but also in structure. 
+            While trends over time may align with policy shifts, the growing concentration in specific areas points to deeper dynamics.
+        </p>
+
+        <p>
+            Unlike other crime types, drug-related offenses are becoming increasingly localized — raising new questions about enforcement, policy, and urban conditions.
         </p>
     </div>
 
 </section>
 
 <footer>
-    <p>Data Science Portfolio • San Francisco Crime Analysis</p>
+    <p>Data Visualization Project • San Francisco Crime Analysis</p>
 </footer>
 
 </body>

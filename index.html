@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +11,7 @@
             background-color: #1a1a2e;
             color: #eaeaea;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         header {
@@ -50,6 +49,23 @@
             border-radius: 10px;
             margin-bottom: 35px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+            /* animation */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 👇 FIX: wider section ONLY for big plot */
+        .wide {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         img, iframe {
@@ -59,8 +75,19 @@
         }
 
         iframe {
-            height: 500px;
+            height: 620px; /* 👈 increased */
             border: none;
+        }
+
+        /* subtle hover effect */
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* highlight text */
+        .highlight {
+            color: #16c79a;
+            font-weight: bold;
         }
 
         footer {
@@ -88,19 +115,18 @@
         <h2>1. Changes Over Time</h2>
 
         <p>
-            We begin by looking at how drug-related crimes have changed over the past two decades. 
-            This gives us a baseline for understanding whether major shifts align with policy changes.
+            We begin by looking at how drug-related crimes have changed over the past two decades.
         </p>
 
-        <img src="images/drug_narcotic_crimes.png" alt="Drug crime over time">
+        <img src="images/drug_narcotic_crimes.png">
 
         <p>
-            There is a noticeable drop between 2009 and 2011, followed by a gradual rise after 2021 and a spike around 2025.
-            These shifts coincide with major policy moments, including sentencing reforms and more recent enforcement efforts.
+            There is a <span class="highlight">sharp drop between 2009–2011</span>, followed by a 
+            <span class="highlight">rise after 2021</span> and a spike around 2025.
         </p>
 
         <p>
-            While we cannot claim direct causation, the timing suggests that policy may play a role in shaping observed crime trends.
+            While we cannot claim causation, the timing suggests that policy may play a role in shaping these trends.
         </p>
     </div>
 
@@ -119,19 +145,18 @@
         <h2>2. A Shift in Where Crime Happens</h2>
 
         <p>
-            The map below shows how the spatial distribution of drug-related crime has changed over time. 
-            Compare earlier years with recent ones to see how patterns evolve.
+            The map below shows how the spatial distribution of drug-related crime has changed over time.
         </p>
 
         <iframe src="drug_narcotic_heatmap.html"></iframe>
 
         <p>
-            Over time, drug crime becomes more concentrated in specific districts — particularly the Tenderloin, Southern, and Mission areas.
-            What was once more distributed across the city is now increasingly localized.
+            Drug crime becomes increasingly concentrated in 
+            <span class="highlight">Tenderloin, Southern, and Mission</span>.
         </p>
 
         <p>
-            By 2025, these areas account for a significantly larger share of total drug-related incidents, suggesting a growing spatial concentration.
+            What was once distributed across the city is now localized in key areas.
         </p>
     </div>
 
@@ -139,29 +164,28 @@
     <!-- TRANSITION -->
     <div class="card">
         <p>
-            Is this concentration unique to drug crime, or part of a broader trend across all crime types?
+            Is this concentration unique to drug crime, or part of a broader trend?
         </p>
     </div>
 
 
-    <!-- SECTION 3 -->
-    <div class="card">
+    <!-- SECTION 3 (FIXED WIDTH) -->
+    <div class="card wide">
         <h2>3. Comparing with Other Crimes</h2>
 
         <p>
-            To answer this, we compare drug crime with other high-frequency crimes such as larceny/theft.
+            We compare drug crime with other high-frequency crimes such as larceny/theft.
         </p>
 
         <iframe src="category_district_comparison.html"></iframe>
 
         <p>
-            Unlike drug-related offenses, other crimes remain relatively stable in their geographic distribution over time.
-            The same districts dominate both in 2003 and 2025 with only minor changes.
+            Other crimes remain relatively stable in their geographic distribution over time.
         </p>
 
         <p>
-            This suggests that the increasing concentration observed earlier is not a general crime trend — 
-            but something specific to drug-related activity.
+            This suggests the concentration we observe is 
+            <span class="highlight">specific to drug-related activity</span>.
         </p>
     </div>
 
@@ -171,12 +195,11 @@
         <h2>Conclusion</h2>
 
         <p>
-            Drug crime in San Francisco has not only changed in scale but also in structure. 
-            While trends over time may align with policy shifts, the growing concentration in specific areas points to deeper dynamics.
+            Drug crime in San Francisco has changed not just in scale, but in structure.
         </p>
 
         <p>
-            Unlike other crime types, drug-related offenses are becoming increasingly localized — raising new questions about enforcement, policy, and urban conditions.
+            While trends may align with policy shifts, the growing spatial concentration points to deeper underlying dynamics.
         </p>
     </div>
 
@@ -185,6 +208,23 @@
 <footer>
     <p>Data Visualization Project • San Francisco Crime Analysis</p>
 </footer>
+
+<!-- 👇 Scroll animation script -->
+<script>
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+});
+
+cards.forEach(card => {
+    observer.observe(card);
+});
+</script>
 
 </body>
 </html>

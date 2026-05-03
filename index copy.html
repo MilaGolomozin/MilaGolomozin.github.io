@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug Crime in San Francisco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: 'Lora', Georgia, serif;
+        background-color: #faf8f3;
+        color: #1a1a1a;
+        line-height: 1.75;
+    }
+
+    /* ── Header ── */
+    header {
+        padding: 80px 20px 50px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    header .kicker {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #b23a2e;
+        margin-bottom: 16px;
+    }
+
+    header h1 {
+        font-size: 38px;
+        font-weight: 600;
+        max-width: 780px;
+        margin: 0 auto 20px;
+        line-height: 1.25;
+    }
+
+    header p.subtitle {
+        max-width: 660px;
+        margin: 0 auto;
+        font-size: 18px;
+        color: #555;
+        font-style: italic;
+    }
+
+    /* ── Page container ── */
+    .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    /* ── Section = full-width text + two-col row for viz+annotation ── */
+    .section {
+        margin-bottom: 80px;
+    }
+
+    .section-intro {
+        max-width: 700px;
+        margin-bottom: 24px;
+    }
+
+    .section-intro h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 14px;
+        padding-top: 48px;
+        border-top: 2px solid #1a1a1a;
+    }
+
+    .section-intro p {
+        margin: 12px 0;
+        font-size: 17px;
+        color: #333;
+    }
+
+    /* ── Two-col: viz (left) + annotation (right) ── */
+    .viz-row {
+        display: grid;
+        grid-template-columns: 1fr 260px;
+        gap: 36px;
+        align-items: start;
+    }
+
+    .viz-col img,
+    .viz-col iframe {
+        width: 100%;
+        border-radius: 4px;
+        display: block;
+    }
+
+    .viz-col img {
+        border: 1px solid #e0dbd0;
+    }
+
+    .viz-col iframe {
+        border: none;
+        height: 520px;
+    }
+
+    /* Taller iframe for the comparison chart to avoid internal title overlap */
+    .viz-col iframe.tall {
+        height: 680px;
+    }
+
+    /* Caption below viz */
+    .viz-caption {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 14px;
+        color: #666;
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+
+    /* ── Annotation / question column ── */
+    .annotation-col {
+        padding-top: 6px;
+    }
+
+    .question {
+        border-left: 4px solid #b23a2e;
+        padding: 12px 14px;
+        margin-bottom: 20px;
+        background: #fff8f7;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .question p {
+        margin: 0;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: #222;
+        line-height: 1.55;
+    }
+
+    .question .label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #b23a2e;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    /* ── Policy timeline ── */
+    .policy-timeline {
+        max-width: 700px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #ddd;
+    }
+
+    .policy-timeline h3 {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #999;
+        margin: 0 0 20px;
+    }
+
+    .policy-entry {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 0 16px;
+        margin-bottom: 18px;
+        align-items: start;
+    }
+
+    .policy-year {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #b23a2e;
+        padding-top: 2px;
+        text-align: right;
+    }
+
+    .policy-body {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 15px;
+        color: #333;
+        line-height: 1.55;
+        border-left: 2px solid #e8e0d5;
+        padding-left: 14px;
+    }
+
+    .policy-body a {
+        color: #b23a2e;
+        text-decoration: none;
+        border-bottom: 1px solid #e8a099;
+        transition: border-color 0.15s;
+    }
+
+    .policy-body a:hover {
+        border-color: #b23a2e;
+    }
+
+    /* ── Highlights ── */
+    .highlight {
+        color: #b23a2e;
+        font-weight: 600;
+    }
+
+    /* ── Play nudge ── */
+    .play-nudge {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 15px;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .play-nudge .icon {
+        width: 28px;
+        height: 28px;
+        background: #b23a2e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .play-nudge .icon svg {
+        width: 12px;
+        height: 12px;
+        fill: white;
+        margin-left: 2px;
+    }
+
+    /* ── Conclusion ── */
+    .conclusion {
+        max-width: 700px;
+        border-top: 2px solid #1a1a1a;
+        padding-top: 40px;
+        margin: 20px 0 80px;
+    }
+
+    .conclusion h2 {
+        font-size: 22px;
+        margin: 0 0 16px;
+    }
+
+    .conclusion p {
+        font-size: 17px;
+        color: #333;
+        margin: 12px 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 1px solid #ddd;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        color: #999;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+        .viz-row {
+            grid-template-columns: 1fr;
+        }
+        header h1 { font-size: 28px; }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="kicker">San Francisco Crime Analysis</div>
+    <h1>Drug Crime in San Francisco</h1>
+    <p class="subtitle">
+        Drug-related crime has been a central issue in California politics. 
+        But how much of what we see in the data reflects politics — and how much reflects deeper structural change?
+    </p>
+</header>
+
+<div class="container">
+
+    <!-- ── SECTION 1 ── -->
+    <div class="section">
+        <div class="section-intro">
+            <h2>1. Changes Over Time</h2>
+            <p>
+                We begin by examining how drug-related crimes have evolved over the past two decades.
+            </p>
+        </div>
+
+        <div class="viz-row">
+            <div class="viz-col">
+                <img src="images/drug_narcotic_crimes.png" alt="Drug and narcotic crimes over time">
+                <div class="viz-caption">
+                    Annual drug and narcotic crime incidents in San Francisco, 2003–2025.
+                </div>
+            </div>
+            <div class="annotation-col">
+                <div class="question">
+                    <span class="label">Question</span>
+                    <p>Why did drug crime drop so sharply around 2010 — and what drove the surge after 2021?</p>
+                </div>
+                <div class="question">
+                    <span class="label">Note</span>
+                    <p>There is a <span class="highlight">sharp drop between 2009–2011</span>, followed by a <span class="highlight">rise after 2021</span> and another spike around 2025. These shifts align with major policy periods.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-timeline">
+            <h3>Key policy moments</h3>
+
+            <div class="policy-entry">
+                <div class="policy-year">2010</div>
+                <div class="policy-body">
+                    The <a href="https://www.congress.gov/bill/111th-congress/senate-bill/1789" target="_blank">Fair Sentencing Act</a> under Obama raised the minimum drug quantities required for a federal felony — likely reducing arrests for small-scale possession and contributing to the sharp 2009–2011 drop.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2021</div>
+                <div class="policy-body">
+                    Governor Newsom launched a <a href="https://www.gov.ca.gov/2026/03/31/governor-newsoms-border-strategy-intercepts-54-million-lethal-fentanyl-pills-since-2021/" target="_blank">$30M fentanyl crackdown</a> with a zero-tolerance approach to possession — driving the spike in recorded drug crime after years of relative calm.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2025</div>
+                <div class="policy-body">
+                    SF Mayor Lurie <a href="https://www.sf.gov/news-mayor-lurie-ends-distribution-of-fentanyl-smoking-supplies-without-counseling-and-treatment" target="_blank">ended distribution of fentanyl smoking supplies</a> without mandatory counseling — potentially pushing users toward illegal dealers and contributing to another uptick in drug-related incidents.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── SECTION 2 ── -->
+    <div class="section">
+        <div class="section-intro">
+            <h2>2. A Shift in Where Crime Happens</h2>
+            <p>
+                Total crime counts alone do not tell the full story. We now turn to geography.
+            </p>
+        </div>
+
+        <div class="play-nudge">
+            <div class="icon">
+                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="2,1 9,5 2,9"/>
+                </svg>
+            </div>
+            <span>Press <strong>Play</strong> to watch how drug crime shifts across San Francisco's neighborhoods over time</span>
+        </div>
+
+        <div class="viz-row">
+            <div class="viz-col">
+                <iframe src="drug_narcotic_heatmap.html" title="Drug crime heatmap over time"></iframe>
+                <div class="viz-caption">
+                    Geographic distribution of drug and narcotic crimes by neighborhood, 2003–2025.
+                </div>
+            </div>
+            <div class="annotation-col">
+                <div class="question">
+                    <span class="label">Question</span>
+                    <p>Is drug crime becoming increasingly concentrated in specific neighborhoods?</p>
+                </div>
+                <div class="question">
+                    <span class="label">Finding</span>
+                    <p>Over time, drug crime becomes increasingly concentrated in <span class="highlight">Tenderloin, Southern, and Mission</span> — what was once distributed across the city is now localized.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-timeline">
+            <h3>What the map shows</h3>
+
+            <div class="policy-entry">
+                <div class="policy-year">2003</div>
+                <div class="policy-body">
+                    Drug crime was relatively spread across the city. Tenderloin (27%), Southern (21%), and Mission (21%) together accounted for <strong>69%</strong> of all drug-related incidents — high, but distributed.
+                </div>
+            </div>
+
+            <div class="policy-entry">
+                <div class="policy-year">2025</div>
+                <div class="policy-body">
+                    The same three districts now account for <strong>83%</strong> — with Tenderloin alone jumping to 37%. What was once spread across the city has consolidated into a handful of neighbourhoods.
+                </div>
+            </div>
+
+            
+
+    </div>
+
+    <!-- ── SECTION 3 ── -->
+    <div class="section">
+        <div class="section-intro">
+            <h2>3. Comparing with Other Crimes</h2>
+            <p>
+                Is this geographic concentration unique to drug crime, or part of a broader citywide trend?
+            </p>
+            <p>
+                The chart below shows two panels side by side. The <strong>right panel</strong> always displays drug crime — how it splits across SF's districts from 2003 to 2025. The <strong>left panel</strong> is yours to explore: use the <strong>dropdown menu</strong> in the top-right corner to select any other crime category (assault, theft, robbery, and more) and compare how its district distribution has shifted over the same period. If the patterns look similar, concentration may be a citywide phenomenon; if drug crime stands apart, something specific is driving it.
+            </p>
+        </div>
+
+        <div class="viz-row">
+            <div class="viz-col">
+                <iframe src="category_district_comparison.html" class="tall" title="Crime category comparison by district"></iframe>
+                <div class="viz-caption">
+                    Each band represents one district's share of total incidents for that crime type. Warmer colours (red/orange) highlight Tenderloin, Southern, and Mission.
+                </div>
+            </div>
+            <div class="annotation-col">
+                <div class="question">
+                    <span class="label">How to read it</span>
+                    <p>Taller red/orange bands on the right = more drug crime in Tenderloin & Mission. Compare with the left panel to see if the same shift happens for other crimes.</p>
+                </div>
+                <div class="question">
+                    <span class="label">Finding</span>
+                    <p>Other crimes remain <span class="highlight">relatively stable</span> in their geographic spread — the Tenderloin surge is largely specific to drug-related activity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CONCLUSION ── -->
+    <div class="conclusion">
+        <h2>Conclusion</h2>
+        <p>
+            The numbers alone don't capture what has really changed about drug crime in San Francisco.
+        </p>
+        <p>
+            Total incidents have swung sharply in response to federal and state policy: a sentencing reform deflated numbers in 2010, an enforcement crackdown inflated them after 2021. But beneath those headline shifts, something structural has also been happening. Drug crime has quietly concentrated — migrating from a citywide problem into a handful of blocks in Tenderloin, Southern, and Mission. Other crime types have not followed the same path.
+        </p>
+        <p>
+            That gap matters. It suggests the concentration is not just a side-effect of policing intensity, but a reflection of deeper forces: displacement, loss of services, and the geography of poverty. Understanding those forces — not just counting incidents — is what good policy requires.
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <p>Data Visualization Project · San Francisco Crime Analysis</p>
+</footer>
+
+</body>
+</html>

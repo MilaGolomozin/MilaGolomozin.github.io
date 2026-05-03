@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Drug Crime in San Francisco</title>
+    <title>European Housing Prices - A deep dive</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -304,15 +304,15 @@
 
         <div class="viz-row">
             <div class="viz-col">
-                <img src="images/drug_narcotic_crimes.png" alt="Drug and narcotic crimes over time">
+                <img src="european_housing_prices_choropleth.html" alt="Drug and narcotic crimes over time">
                 <div class="viz-caption">
-                    Annual drug and narcotic crime incidents in San Francisco, 2003–2025.
+                    Changes in the Housing price index in Europe post COVID-19 2022-2025 
                 </div>
             </div>
             <div class="annotation-col">
                 <div class="question">
                     <span class="label">Question</span>
-                    <p>Why did drug crime drop so sharply around 2010 — and what drove the surge after 2021?</p>
+                    <p>Which country had the sharpest increase in housing prices?</p>
                 </div>
                 <div class="question">
                     <span class="label">Note</span>
@@ -351,9 +351,9 @@
     <!-- ── SECTION 2 ── -->
     <div class="section">
         <div class="section-intro">
-            <h2>2. A Shift in Where Crime Happens</h2>
+            <h2>2. A Deeper look into Hungary</h2>
             <p>
-                Total crime counts alone do not tell the full story. We now turn to geography.
+                As it was clear from the previous visualization Hingary has experienced the sharpest increase in housing prices. It would be interesting to learn more about this.
             </p>
         </div>
 
@@ -368,9 +368,9 @@
 
         <div class="viz-row">
             <div class="viz-col">
-                <iframe src="drug_narcotic_heatmap.html" title="Drug crime heatmap over time"></iframe>
+                <iframe src="hungary_housing_prices.html" title="Drug crime heatmap over time"></iframe>
                 <div class="viz-caption">
-                    Geographic distribution of drug and narcotic crimes by neighborhood, 2003–2025.
+                    Geographic distribution of housing prices increases in different regions of Hungary 2007-2024.
                 </div>
             </div>
             <div class="annotation-col">
@@ -409,7 +409,7 @@
     <!-- ── SECTION 3 ── -->
     <div class="section">
         <div class="section-intro">
-            <h2>3. Comparing with Other Crimes</h2>
+            <h2>3. Comprehensive Overview</h2>
             <p>
                 Is this geographic concentration unique to drug crime, or part of a broader citywide trend?
             </p>
@@ -420,7 +420,7 @@
 
         <div class="viz-row">
             <div class="viz-col">
-                <iframe src="category_district_comparison.html" class="tall" title="Crime category comparison by district"></iframe>
+                <iframe src="images/heatmap_housing.png" class="tall" title="Crime category comparison by district"></iframe>
                 <div class="viz-caption">
                     Each band represents one district's share of total incidents for that crime type. Warmer colours (red/orange) highlight Tenderloin, Southern, and Mission.
                 </div>
